@@ -28,6 +28,7 @@ public class Player {
     }
 
     public static int getNumPlayers() {
+
         return numPlayers;
     }
 }

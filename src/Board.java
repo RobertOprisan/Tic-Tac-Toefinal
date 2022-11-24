@@ -1,4 +1,4 @@
-import javax.print.DocFlavor;
+
 
 public class Board {
     public static final String EMPTY = ".";
@@ -33,15 +33,15 @@ public class Board {
         return s;
 
     }
-    public boolean shoot(int row, int col, Player player1) {
-        if (row < 0 || row >= NUM_ROWS ||
-                col < 0 || col >= NUM_COLS) {
+    public boolean shoot(Shot shot, Player player1) {
+        if (shot.row < 0 || shot.row >= NUM_ROWS ||
+                shot.col < 0 || shot.col >= NUM_COLS) {
             System.out.println("Wrong ROW or COL");
             return false;
         }
         String symbol = player1.getSymbol();
-        if (board[row][col] == EMPTY) {
-            board[row][col] = symbol;
+        if (board[shot.row][shot.col] == EMPTY) {
+            board[shot.row][shot.col] = symbol;
             return true;
         } else {
             System.out.println("position already in use");
@@ -103,6 +103,18 @@ public class Board {
         }
         return false;
     }
+
+    public boolean checkDraw() {
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                if (board[row][col] == EMPTY) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 
 
 }
